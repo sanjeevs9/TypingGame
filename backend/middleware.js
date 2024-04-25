@@ -19,7 +19,7 @@ const UserLogin=z.object({
 
     password:z
     .string({required_error:"Password is required"})
-    .min(6,{message:"Wrong Password"})
+    .min(6,{message:"6 digits of pass is required"})
 })
 
 module.exports={
