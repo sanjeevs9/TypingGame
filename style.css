@@ -1,0 +1,155 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
+
+:root{
+    --bgColor: #333;
+    --textPrimary: #fff;
+    --textSecondary: #666;
+    --PrimaryColor: #fd4;
+    --settingsColor: #2c2e31;
+    --roundness: 0.5rem
+
+}
+
+body{
+     font-family: "Roboto Mono", monospace;
+     background-color: var(--bgColor);
+     color: var(--textPrimary);
+
+}
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    max-width: full;
+    margin: 24px auto;
+}
+.heading img {
+    width: 30px;
+    background-color: transparent;
+    
+}
+.heading{
+    max-width: 80%;
+    width: 85%;
+    display: flex;
+    justify-content: space-between;
+    color: var(--PrimaryColor);
+    
+}
+button{
+    background: rgba(255,255,255,.2);
+    border:0;
+    color: rgba(255,255,255,.5);
+    padding: 5px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.login{
+    background-color: var(--settingsColor);
+    border-radius: 5px;
+    color: white;
+}
+
+#logo-col{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    cursor: pointer;
+}
+#heading-text{
+    font-size: x-large
+}
+#heading-button{
+    display: flex;
+    align-items: center
+}
+#header{
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+}
+
+#info{
+    text-align: right;
+}
+.settings {
+    font-size: smaller;
+    width: 75%;
+    background-color: var(--settingsColor);
+    max-width: 1000px;
+    margin-top: 10px;
+    margin-left: 2%;
+    margin-right: 2%;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    border-radius: 10px;
+}
+.number{
+    display: flex;
+    gap: 20px;
+}
+.punctuation:hover,.capital:hover,.default:hover,.paw-type:hover,.sentences:hover,#one:hover,#two:hover,#three:hover{
+color: var(--PrimaryColor);
+cursor: pointer;
+}
+
+
+
+.first-settings, .second-settings, .third-settings {
+    font-size: small;
+    flex: 1;
+    display: flex;
+    justify-content: space-around;
+    margin: 0 10px;
+    margin: auto; /* This adds 10px of horizontal margin */
+}
+.third-settings{
+    max-width: 25%;
+}
+.spacer {
+    height: auto;
+    width: 1rem;
+    background:var(--PrimaryColor);
+    transform: rotate(90deg);
+    margin: .5rem 0;
+    border-radius: 1rem;
+}
+@media (max-width:1000px) {
+    .third-settings {
+        display: none;
+    }
+    .second-line{
+        display: none;
+    }
+}
+
+@media (max-width: 600px) {
+    .first-settings, .second-settings{
+        font-size: x-small;
+    }
+    .spacer {
+    height: 0.15rem;
+    width: 1rem;
+    background:var(--PrimaryColor);
+    transform: rotate(90deg);
+    margin: .5rem 0;
+}}
+
+.text{
+  color:var(--textSecondary);
+  font-size: larger;
+  letter-spacing: 0.1rem;
+  word-spacing: 0.3rem;
+}
+.game{
+    height: auto;
+    max-width: 1000px;
+    width: 75%;
+    margin-top: 30px;
+    word-wrap: break-word;
+    line-height: 2.0;
+    height: 150px;
+    overflow-y: hidden;
+}
