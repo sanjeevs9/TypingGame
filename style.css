@@ -143,6 +143,13 @@ cursor: pointer;
   letter-spacing: 0.1rem;
   word-spacing: 0.3rem;
 }
+
+div.word{
+    display: inline-block;
+    font-family: "Roboto Mono", monospace;
+    margin: 0 8px;
+}
+
 .game{
     height: auto;
     max-width: 1000px;
@@ -152,4 +159,34 @@ cursor: pointer;
     line-height: 2.0;
     height: 150px;
     overflow-y: hidden;
+    position: relative;
+
+}
+.game:focus {
+    outline: none;
+}
+#textt{
+    filter: blur(5px);
+}
+.game:focus #textt{
+    filter: blur(0px);
+}
+.game:focus #focus-error{
+    display: none;
+}
+
+#focus-error{
+    position: absolute;
+    z-index: 20;
+    inset: 0;
+    text-align: center;
+    padding-top: 40px;
+    
+}
+
+.letter.correct{
+    color:white;
+}
+.letter.incorrect{
+    color: #f55;
 }
