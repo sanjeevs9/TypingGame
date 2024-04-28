@@ -41,7 +41,7 @@ document.querySelector(".default").onclick=()=>{
 
 
 function addClass(el, name) {
-    el.add(name);
+    el.classList.add(name);
 }
 
 function removeClass(el, name){
@@ -72,8 +72,8 @@ async function fetchParagraph() {
         game.innerHTML+=`<div class="word"><span class="letter">${words[i].split("").join('</span><span class="letter">')}</span></div>`
     }
     console.log(document.querySelector(".letter"))
-    const cur=document.querySelector(".word").classList;
-    const lett=document.querySelector(".letter").classList;
+    const cur=document.querySelector(".word");
+    const lett=document.querySelector(".letter");
     console.log(lett)
     addClass(cur,"current");
     addClass(lett,"current");
@@ -83,26 +83,89 @@ async function fetchParagraph() {
     const key=ev.key;
     const currentSpan=document.querySelector(".letter.current")
     const currentDiv=document.querySelector(".word.current")
-    const currentLetter=currentSpan.textContent || ' ';
+    const currentLetter=currentSpan?.innerHTML || " ";
     const isLetter=key.length==1 && key!==" ";
-    const isSpcace=key==" ";
-
-    const nextSibling=currentSpan.nextSibling;
-    const nextWord=currentDiv.nextSibling
    
-    console.log(currentLetter)
+    console.log("curr--"+currentLetter+"--curr")
     
     if(isLetter){
-        if(currentLetter){
-            {key==currentLetter?addClass(currentSpan.classList,"correct"):addClass(currentSpan.classList,"incorrect")}
+        if(currentLetter!==" "){
+            {key==currentLetter?addClass(currentSpan,"correct"):addClass(currentSpan,"incorrect")}
             removeClass(currentSpan,"current")
-        }
-        if(nextSibling){
-            addClass(nextSibling.classList,"current")   
+            if(currentSpan.nextSibling){
+                addClass(currentSpan.nextSibling,"current")   
+            }
         }else{
-            
+            currentDiv.innerHTML+=`<span class="letter incorrect extra">${key}</span>`
+        }
+
+        
+        
+    }
+    if(key===" "){
+        if(currentLetter!==" "){
+            const invalidLetters=[...document.querySelectorAll(".word.current > span.letter:not(.correct)")]
+            invalidLetters.forEach(element => {
+                addClass(element,"incorrect")
+            });
         }
         
+        removeClass(currentDiv,"current");
+        addClass(currentDiv.nextSibling,"current");
+        if(currentSpan){
+            removeClass(currentSpan,"current");
+        }
+        addClass(currentDiv.nextSibling.firstChild,"current");
+    }
+
+    if(key==="Backspace"){
+        if(currentLetter!==" "){
+            if(currentSpan.previousElementSibling){
+                removeClass(currentSpan,"current")
+                const prevElement=currentSpan.previousElementSibling;
+                removeClass(prevElement,"correct")
+                removeClass(prevElement,"incorrect")
+                addClass(prevElement,"current")
+            }else{
+                console.log(currentDiv.innerHTML)
+                if(currentDiv.previousElementSibling){
+                    removeClass(currentDiv,"current")
+                    const prevDiv=currentDiv.previousElementSibling;
+                    addClass(prevDiv,"current")
+                    const extra=[...document.querySelectorAll(".current.word > span.extra")]
+                    if(extra.length!==0){
+                        extra.forEach(element => {
+                            prevDiv.removeChild(element)
+                        });
+                        addClass(prevDiv.lastChild,"current")
+                            removeClass(prevDiv.lastChild,"incorrect")
+                            removeClass(prevDiv.lastChild,"correct")
+                    }else{
+                        if(prevDiv.lastChild){
+                            addClass(prevDiv.lastChild,"current")
+                            removeClass(prevDiv.lastChild,"incorrect")
+                            removeClass(prevDiv.lastChild,"correct")
+                        }
+                    }
+                    
+                }
+            }
+        }else{
+            const extra=[...document.querySelectorAll(".current.word > span.extra")]
+            console.log(extra)
+            if(extra.length!==0){
+                extra.forEach(element => {
+                    currentDiv.removeChild(element)
+                });
+            }else{
+                if(currentDiv.lastChild){
+                    addClass(currentDiv.lastChild,"current")
+                    removeClass(currentDiv.lastChild,"correct")
+                    removeClass(currentDiv.lastChild,"incorrect")
+                }
+            }
+            
+        }
     }
     
   })
