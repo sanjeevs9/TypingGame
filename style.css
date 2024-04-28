@@ -165,9 +165,9 @@ div.word{
 .game:focus {
     outline: none;
 }
-/* #textt{
+#textt{
     filter: blur(5px);
-} */
+}
 .game:focus #textt{
     filter: blur(0px);
 }
