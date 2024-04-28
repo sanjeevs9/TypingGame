@@ -22,7 +22,6 @@ elements.forEach(element => {
     element.onclick=()=>{
         wordSettings.sentences=2;
         fetchParagraph()
-        console.log("dsfknasdfsdfsdf")
     }
 });   
 document.getElementById("three").onclick=()=>{
@@ -58,11 +57,11 @@ async function fetchParagraph() {
       const data = await response.json();
       const paragraph = data.paragraph;
       words=paragraph.split(" ");
-      console.log(words)
+      
      formatWord();
       
     } catch (error) {
-      console.log(wordSettings)
+
     }
   }
 
@@ -71,31 +70,33 @@ async function fetchParagraph() {
     for(let i=0;i<words.length;i++){
         game.innerHTML+=`<div class="word"><span class="letter">${words[i].split("").join('</span><span class="letter">')}</span></div>`
     }
-    console.log(document.querySelector(".letter"))
+   
     const cur=document.querySelector(".word");
     const lett=document.querySelector(".letter");
-    console.log(lett)
+   
     addClass(cur,"current");
     addClass(lett,"current");
   }
 
   document.getElementById("game").addEventListener('keyup',(ev)=>{
     const key=ev.key;
-    const currentSpan=document.querySelector(".letter.current")
-    const currentDiv=document.querySelector(".word.current")
+    const currentSpan=document.querySelector('.letter.current')
+    const currentDiv=document.querySelector('.word.current')
     const currentLetter=currentSpan?.innerHTML || " ";
-    const isLetter=key.length==1 && key!==" ";
-   
+    const isLetter=key.length===1 && key!==" ";
+    const isFirstLetter = currentSpan === currentDiv.firstChild
+  
+    console.log(key)
     console.log("curr--"+currentLetter+"--curr")
     
     if(isLetter){
         if(currentLetter!==" "){
-            {key==currentLetter?addClass(currentSpan,"correct"):addClass(currentSpan,"incorrect")}
+            {key===currentLetter?addClass(currentSpan,"correct"):addClass(currentSpan,"incorrect")}
             removeClass(currentSpan,"current")
             if(currentSpan.nextSibling){
                 addClass(currentSpan.nextSibling,"current")   
             }
-        }else{
+        }else if(currentLetter===" "){
             currentDiv.innerHTML+=`<span class="letter incorrect extra">${key}</span>`
         }
 
@@ -119,53 +120,78 @@ async function fetchParagraph() {
     }
 
     if(key==="Backspace"){
-        if(currentLetter!==" "){
-            if(currentSpan.previousElementSibling){
-                removeClass(currentSpan,"current")
-                const prevElement=currentSpan.previousElementSibling;
-                removeClass(prevElement,"correct")
-                removeClass(prevElement,"incorrect")
-                addClass(prevElement,"current")
-            }else{
-                console.log(currentDiv.innerHTML)
-                if(currentDiv.previousElementSibling){
-                    removeClass(currentDiv,"current")
-                    const prevDiv=currentDiv.previousElementSibling;
-                    addClass(prevDiv,"current")
-                    const extra=[...document.querySelectorAll(".current.word > span.extra")]
-                    if(extra.length!==0){
-                        extra.forEach(element => {
-                            prevDiv.removeChild(element)
-                        });
-                        addClass(prevDiv.lastChild,"current")
-                            removeClass(prevDiv.lastChild,"incorrect")
-                            removeClass(prevDiv.lastChild,"correct")
-                    }else{
-                        if(prevDiv.lastChild){
-                            addClass(prevDiv.lastChild,"current")
-                            removeClass(prevDiv.lastChild,"incorrect")
-                            removeClass(prevDiv.lastChild,"correct")
-                        }
-                    }
-                    
-                }
-            }
-        }else{
-            const extra=[...document.querySelectorAll(".current.word > span.extra")]
-            console.log(extra)
-            if(extra.length!==0){
-                extra.forEach(element => {
-                    currentDiv.removeChild(element)
-                });
-            }else{
-                if(currentDiv.lastChild){
-                    addClass(currentDiv.lastChild,"current")
-                    removeClass(currentDiv.lastChild,"correct")
-                    removeClass(currentDiv.lastChild,"incorrect")
-                }
-            }
-            
+        if(currentSpan && isFirstLetter && currentDiv.previousSibling && currentDiv.previousSibling.lastChild.classList.contains("extra")){
+            const prevDiv = currentDiv.previousSibling;
+            const extraLetter = prevDiv.lastChild;
+            removeClass(currentDiv,"current");
+            addClass(prevDiv,"current");
+            removeClass(currentSpan,"current");
+            addClass(extraLetter,"current");
+            prevDiv.removeChild(extraLetter);
         }
+        else if(currentSpan && isFirstLetter && currentDiv.previousSibling){
+            removeClass(currentDiv,"current")
+            addClass(currentDiv.previousSibling,"current")
+            removeClass(currentSpan,"current")
+            addClass(currentDiv.previousSibling.lastChild,"current");
+            removeClass(currentDiv.previousSibling.lastChild,"incorrect");
+            removeClass(currentDiv.previousSibling.lastChild,"correct");
+        }
+        if(currentSpan && !isFirstLetter && currentDiv.lastChild.classList.contains("extra")){
+            addClass(currentDiv.lastChild,"current");    
+            currentDiv.removeChild(currentDiv.lastChild);
+
+        }
+        else if(currentSpan && !isFirstLetter){
+           removeClass(currentSpan,"current")
+           if(currentSpan.previousSibling){
+            addClass(currentSpan.previousSibling,"current");
+            removeClass(currentSpan.previousSibling,"correct")
+            removeClass(currentSpan.previousSibling,"incorrect")
+           }
+        }
+        if(!currentSpan && currentDiv.lastChild.classList.contains("extra")){
+            addClass(currentDiv.lastChild,"current");
+            currentDiv.removeChild(currentDiv.lastChild)
+        }
+        else if(!currentSpan){
+            addClass(currentDiv.lastChild,"current");
+            removeClass(currentDiv.lastChild,"incorrect");
+            removeClass(currentDiv.lastChild,"correct");
+        }
+        
     }
+
+    //move cursor
+    const cursor = document.getElementById('cursor');
+    const game = document.getElementById('game');
+    const nextLetter = document.querySelector(".letter.current");
+    const nextWord= document.querySelector(".word.current");
+    const gameRect = game.getBoundingClientRect();
+    let left;
+    let rect;
+    let top;
+    if(nextLetter){
+         rect = nextLetter.getBoundingClientRect();
+         left = rect.left - gameRect.left;
+          top = rect.top - gameRect.top;
+
+    }else{
+         rect = nextWord.getBoundingClientRect();
+         left = rect.right - gameRect.left;
+        top = rect.top - gameRect.top+7;
+       
+    }
+    
+    
+    
+    
+    
+    // Ensure the cursor doesn't go outside the bounds of the game element
+    top = Math.min(top, game.offsetHeight - cursor.offsetHeight)+5;
+    left = Math.min(left, game.offsetWidth - cursor.offsetWidth)-10;
+    
+    cursor.style.top = top + 'px';
+    cursor.style.left = left + 'px';
     
   })
