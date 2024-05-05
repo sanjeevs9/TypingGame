@@ -189,7 +189,7 @@ div.word{
 .letter.incorrect{
     color: #f55;
 }
-@keyframes blink{
+/* @keyframes blink{
     0%{
         opacity: 1;
     }
@@ -197,7 +197,7 @@ div.word{
     50%{
         opacity: 0;
     }
-}
+} */
 
 #cursor {
     height: 0.09rem;
