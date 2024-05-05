@@ -66,6 +66,9 @@ async function fetchParagraph() {
   }
 
   function formatWord(){
+    document.getElementById("textt").style.marginTop="0px"
+    document.getElementById("cursor").style.top="10px"
+    document.getElementById("cursor").style.left="-3px"
     game.innerHTML=""
     for(let i=0;i<words.length;i++){
         game.innerHTML+=`<div class="word"><span class="letter">${words[i].split("").join('</span><span class="letter">')}</span></div>`
@@ -85,9 +88,20 @@ async function fetchParagraph() {
     const currentLetter=currentSpan?.innerHTML || " ";
     const isLetter=key.length===1 && key!==" ";
     const isFirstLetter = currentSpan === currentDiv.firstChild
-  
-    console.log(key)
-    console.log("curr--"+currentLetter+"--curr")
+
+    const keys=document.querySelectorAll(".key")
+ 
+
+    keys.forEach(element=>{
+        if(element.textContent.trim()===key.toUpperCase()){
+            element.classList.add("active")
+            
+            setTimeout(()=>{
+                element.classList.remove("active")
+            },200)
+        }
+        
+    })
     
     if(isLetter){
         if(currentLetter!==" "){
@@ -161,7 +175,26 @@ async function fetchParagraph() {
         }
         
     }
+    if(!currentDiv.nextSibling && !currentSpan.nextSibling){
+        alert("done")
+    }
 
+    //move lines
+    if(currentDiv.getBoundingClientRect().top>200){
+        
+       const text=document.getElementById('textt');
+       const margin=parseInt(text.style.marginTop || "0px");
+       const game= document.getElementById("game");
+        console.log(game.clientHeight)
+
+        if(game.scrollHeight <game.clientHeight){
+
+        }else{
+            text.style.marginTop=(margin-40) + "px";
+        }
+      
+    }
+    console.log(document.querySelector(".keyboard").clientWidth)
     //move cursor
     const cursor = document.getElementById('cursor');
     const game = document.getElementById('game');
