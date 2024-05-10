@@ -1,5 +1,3 @@
-
-
 let wordSettings={
    capital: false,
    punctuations:false,
@@ -49,6 +47,16 @@ function removeClass(el, name){
 
 let words=[];
 let game=document.getElementById("textt");
+let timer=0;
+let TimerStart=false;
+let myInterval;
+
+function stopwatch(){
+    timer=timer+1;
+    document.getElementById("time").innerHTML=timer;
+}
+
+
 
 fetchParagraph()
 async function fetchParagraph() {
@@ -57,7 +65,6 @@ async function fetchParagraph() {
       const data = await response.json();
       const paragraph = data.paragraph;
       words=paragraph.split(" ");
-      
      formatWord();
       
     } catch (error) {
@@ -69,7 +76,13 @@ async function fetchParagraph() {
     document.getElementById("textt").style.marginTop="0px"
     document.getElementById("cursor").style.top="10px"
     document.getElementById("cursor").style.left="-3px"
+   
+    timer=0;
+    TimerStart=false;
+    clearInterval(myInterval);
     game.innerHTML=""
+    document.getElementById("time").innerHTML=timer;
+
     for(let i=0;i<words.length;i++){
         game.innerHTML+=`<div class="word"><span class="letter">${words[i].split("").join('</span><span class="letter">')}</span></div>`
     }
@@ -88,14 +101,15 @@ async function fetchParagraph() {
     const currentLetter=currentSpan?.innerHTML || " ";
     const isLetter=key.length===1 && key!==" ";
     const isFirstLetter = currentSpan === currentDiv.firstChild
-
     const keys=document.querySelectorAll(".key")
- 
+    if(!TimerStart){
+        TimerStart=true;
+        myInterval= setInterval(stopwatch, 1000);
+    }
 
     keys.forEach(element=>{
         if(element.textContent.trim()===key.toUpperCase()){
             element.classList.add("active")
-            
             setTimeout(()=>{
                 element.classList.remove("active")
             },200)
@@ -176,7 +190,11 @@ async function fetchParagraph() {
         
     }
     if(!currentDiv.nextSibling && !currentSpan.nextSibling){
-        alert("done")
+        timer=0;
+        TimerStart=false;
+        clearInterval(myInterval);
+        document.getElementById("game").blur()
+        
     }
 
     //move lines

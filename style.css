@@ -288,3 +288,14 @@ spann {
         display:none
     }
   }
+
+  .time{
+    margin-top: 10px ;
+    color: var(--PrimaryColor);
+    background-color: var(--settingsColor);
+    padding: 5px;
+    border-radius: 5px;
+    padding-left: 10px;
+    padding-right: 10px
+    
+  }
