@@ -175,7 +175,8 @@ function formatWord() {
 window.addEventListener('keyup', (ev) => {
     const key = ev.key;
     console.log(key)
-    if (key === "Escape" || "Tab") {
+    if (key === "Escape" || key=== "Tab") {
+        console.log("sdfbasd")
         wordSettings.sentences = 2;
         fetchParagraph()
         document.getElementById("game").focus();
