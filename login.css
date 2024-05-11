@@ -1,0 +1,145 @@
+
+body{
+margin: 0;
+}
+:root{
+    --green:#369c7a;
+    --gray: #f0f0f0;
+    --Dgray: #acacac;
+}
+ .container{
+    min-height: 100vh;
+    overflow: hidden;
+    position: relative;
+    overflow: hidden;
+    z-index: 10;
+ }
+ .form-container{
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    
+ }
+ .signIn-SignUp{
+    width: fit-content;
+    z-index: 12;
+    right: -60%;
+    top : 40%;
+    position: relative;
+    display: grid;
+    z-index: 21;
+ }
+ .SignIn{
+    display: none;
+    width: fit-content;
+    flex-direction: column;
+    gap: 15px;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    grid: 1/2;
+ }
+ .title{
+    justify-content: center;
+    text-align: center;
+    font-size: x-large;
+    font-weight: 600;
+ }
+ .emailField,.passwordField ,.usernameField{
+    background-color: var(--gray);
+    padding: 15px;
+    border-radius: 30px;
+    font-size: 1.1rem;
+    line-height: 1;
+    font-weight: 600;
+
+ }
+ .email, .password, .username{
+    background: none;
+    outline: none;
+    border: none;
+    line-height: 1;
+    font-weight: 800;
+    color:  black;
+    padding-left: 8px;
+ }
+ .icon{
+    padding-left: 10px;
+    color: #aaa;
+ }
+ .button{
+    display: flex;
+    justify-content: center;
+    background-color: var(--green);
+    padding: 15px;
+    border-radius: 20px;
+    border: 0;
+    width: 140px;
+    font-weight: 600;
+    color: white;
+    cursor: pointer;
+    
+ }
+ .SignUp{
+    display: flex;
+    width: fit-content;
+    flex-direction: column;
+    gap: 15px;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    grid: 1/2;
+ }
+ .panel{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+   
+ }
+.extra{
+    position: relative;
+    right: -8%;
+    top: 8%;
+}
+.left{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    height: fit-content;
+    align-items: center;
+    gap: 20px;
+    z-index: 20;
+
+}
+.text{
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+.button-1{
+    width: 100px;
+    cursor: pointer;
+}
+.img{
+    height: 700px;
+    width: 700px;
+}
+
+ .container:before{
+    content: "";
+    background-color: var(--green);
+    height: 2000px;
+    top: -10%;
+    right: 48%;
+    width: 2000px;
+    border-radius: 50%;
+    transform: translateY(-50%);
+    position: absolute;
+    z-index: 1; 
+    transition: transform ease-in-out 1.8s;
+    
+}
+.container.clicked:before {
+    transform: translate(100%, -50%);
+}
