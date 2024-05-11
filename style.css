@@ -84,6 +84,7 @@ button{
     justify-content: space-between;
     padding: 10px;
     border-radius: 10px;
+    position: relative;
 }
 .number{
     display: flex;
@@ -153,7 +154,7 @@ div.word{
     height: auto;
     max-width: 1000px;
     width: 75%;
-    margin-top: 30px;
+    margin-top: 40px;
     word-wrap: break-word;
     line-height: 2.0;
     height: 110px;
@@ -289,13 +290,17 @@ spann {
     }
   }
 
+  
+
   .time{
-    margin-top: 10px ;
     color: var(--PrimaryColor);
-    background-color: var(--settingsColor);
+   
     padding: 5px;
     border-radius: 5px;
     padding-left: 10px;
-    padding-right: 10px
+    padding-right: 10px;
+    position: absolute;
+    left: 25px;
+    top: 50px
     
   }

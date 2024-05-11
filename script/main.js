@@ -50,6 +50,9 @@ let game=document.getElementById("textt");
 let timer=0;
 let TimerStart=false;
 let myInterval;
+let CorrectLetter=0;
+let TotalLetter=0;
+let WrongLetter=0;
 
 function stopwatch(){
     timer=timer+1;
@@ -81,7 +84,10 @@ async function fetchParagraph() {
     TimerStart=false;
     clearInterval(myInterval);
     game.innerHTML=""
-    document.getElementById("time").innerHTML=timer;
+    document.getElementById("time").innerHTML="";
+    CorrectLetter=0;
+    WrongLetter=0;
+    TotalLetter=0;
 
     for(let i=0;i<words.length;i++){
         game.innerHTML+=`<div class="word"><span class="letter">${words[i].split("").join('</span><span class="letter">')}</span></div>`
@@ -119,7 +125,13 @@ async function fetchParagraph() {
     
     if(isLetter){
         if(currentLetter!==" "){
-            {key===currentLetter?addClass(currentSpan,"correct"):addClass(currentSpan,"incorrect")}
+            if(key===currentLetter){
+                addClass(currentSpan,"correct");
+                CorrectLetter++;
+            }else{
+                addClass(currentSpan,"incorrect")
+                WrongLetter++;
+            }
             removeClass(currentSpan,"current")
             if(currentSpan.nextSibling){
                 addClass(currentSpan.nextSibling,"current")   
@@ -190,10 +202,12 @@ async function fetchParagraph() {
         
     }
     if(!currentDiv.nextSibling && !currentSpan.nextSibling){
-        timer=0;
         TimerStart=false;
         clearInterval(myInterval);
-        document.getElementById("game").blur()
+        TotalLetter=CorrectLetter+WrongLetter;
+        
+WPM()
+    document.getElementById("game").blur()
         
     }
 
@@ -246,3 +260,22 @@ async function fetchParagraph() {
     cursor.style.left = left + 'px';
     
   })
+
+  function WPM(){
+    let timeinmin=timer/60;
+    let WPM=(TotalLetter/5)/timeinmin;
+
+    let accuracy=(CorrectLetter/TotalLetter)*100;
+
+    let AWPM=WPM * (accuracy/100) ;
+
+    console.log(TotalLetter+"total")
+    console.log(CorrectLetter+"correct")
+    console.log(timer)
+    console.log(WPM)
+    timer=0;
+    TotalLetter=0;
+    CorrectLetter=0;
+    WrongLetter=0;
+    alert(AWPM +"WPM  " + accuracy +"accuracy")
+  }
