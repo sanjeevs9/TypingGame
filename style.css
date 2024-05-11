@@ -218,7 +218,7 @@ div.word{
     border: 3px solid var(--settingsColor);
     border-radius: 10px;
     padding: 10px;
-    margin-top: 150px;
+    margin-top: 200px;
   }
   .keys-row {
     margin-top: 2px;
@@ -269,7 +269,7 @@ div.word{
   }
   
   .key__spacebar {
-    width: 300px;
+    width: 320px;
   }
   
   .key__bottom-funct {
@@ -303,4 +303,63 @@ spann {
     left: 25px;
     top: 50px
     
+  }
+
+  .WPM{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+    color: #fd4;
+    width: 650px;
+    position: absolute;
+    margin-top:100px;
+    padding-left: 20px;
+    padding-right: 20px;
+    font: bolder;
+
+  }
+
+  .accuracy, .sec, .wpm{
+    display: flex;    
+  }
+
+  @media (max-width:1000px){
+    .WPM{
+        display: none;
+    }
+  }
+
+  .restart{
+    display: flex;
+    width: 280px;
+    justify-content: space-between;
+    margin-top: 10px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  }
+  #esc, #tab{
+    background-color: var(--settingsColor);
+    text-align: center;
+    justify-content: center;
+    padding: 12px;
+    font: bolder;
+    
+  }
+  .r-text{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    margin-top: 10px;
+    color: wheat;
+   
+  }
+  .on{
+    color: var(--PrimaryColor);
+  }
+  .off{
+    color: white;
+  }
+
+
+  @media (max-width:1000px){
+    .restart{
+        display: none;
+    }
   }

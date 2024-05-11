@@ -30,11 +30,11 @@
     </div>
     <div class="settings">
       <div class="first-settings">
-        <div class="punctuation">
+        <div class="punctuation set">
           <i class="fa-solid fa-quote-left"></i>
           punctuation
         </div>
-        <div class="capital">
+        <div class="capital set">
           <i class="fa-solid fa-a"></i>
           capitals
         </div>
@@ -42,7 +42,7 @@
       </div>
       <div class="spacer"></div>
       <div class="second-settings">
-        <div class="default">
+        <div class="default set">
           <i class="fa-solid fa-ghost"></i>
           default
         </div>
@@ -53,30 +53,41 @@
       </div>
       <div class="spacer second-line"></div>
       <div class="third-settings">
-        <div class="sentences two-class" >
+        <div class="sentences two-class">
           <i class="fa-solid fa-a"></i>
           sentences
         </div>
         <div class="number">
-        <span id="one">1</span>
-        <span id="two" class="two-class">2</span>
-        <span id="three">3</span>
+          <span id="one" class="set third">1</span>
+          <span id="two" class="two-class set third">2</span>
+          <span id="three" class="set third">3</span>
         </div>
       </div>
       <div class="time" id="time">
-        
+
       </div>
     </div>
-   
+
     <div class="game" id="game" tabindex="0">
-      <div class="text" id="textt">Getting paragrapgh...  </div>
+      <div class="text" id="textt">Getting paragrapgh... </div>
       <div id="focus-error">Click here to focus</div>
       <div id="cursor"></div>
+    </div>
+    <div class="WPM">
+      <div class="wpm">
+
+      </div>
+      <div class="sec">
+
+      </div>
+      <div class="accuracy">
+
+      </div>
     </div>
     <div class="keyboard">
       <div class="keys-row">
         <div class="key key__esc">
-          <i data-feather="x"></i>
+          Esc
         </div>
         <div class="key key__symbols">
           ! <spann> 1
@@ -115,10 +126,10 @@
           + <spann> =
         </div>
         <div class="key key__delete key__icon">
-          <i data-feather="delete"></i>
+          <i class="fa-solid fa-delete-left"></i>
         </div>
       </div>
-          
+
       <div class="keys-row">
         <div class="key key__oneandhalf">
           Tab
@@ -163,10 +174,10 @@
           | <spann> \
         </div>
       </div>
-          
+
       <div class="keys-row">
         <div class="key key__caps">
-          CapsLook
+          CapsLK
         </div>
         <div class="key">
           A
@@ -202,13 +213,13 @@
           " <spann> '
         </div>
         <div class="key key__enter">
-          <i data-feather="corner-down-left"></i>
+          <i class="fa-solid fa-arrow-turn-down fa-rotate-90"></i>
         </div>
       </div>
-      
+
       <div class="keys-row">
         <div class="key key__shift-left">
-          Shft
+          Shift
         </div>
         <div class="key">
           Z
@@ -241,16 +252,16 @@
           ? <spann> /
         </div>
         <div class="key">
-          Shft 
+          Shift
         </div>
         <div class="key key__arrow">
-          <i data-feather="arrow-up"></i>
+          <i class="fa-solid fa-arrow-up"></i>
         </div>
         <div class="key">
-          <i data-feather="trash-2"></i>
+          <i class="fa-solid fa-trash"></i>
         </div>
       </div>
-          
+
       <div class="keys-row">
         <div class="key key__bottom-funct">
           Ctrl
@@ -270,17 +281,32 @@
           Alt
         </div>
         <div class="key key__arrow">
-          <i data-feather="arrow-left"></i>
+          <i class="fa-solid fa-arrow-left"></i>
         </div>
         <div class="key key__arrow">
-          <i data-feather="arrow-down"></i>
+          <i class="fa-solid fa-arrow-down"></i>
         </div>
         <div class="key key__arrow">
-          <i data-feather="arrow-right"></i>
+          <i class="fa-solid fa-arrow-right"></i>
         </div>
       </div>
     </div>
-  
+    <div class="restart">
+      <div id="esc">
+        Escape
+      </div>
+      <span class="r-text">or</span>
+
+
+      <div id="tab">
+        tab
+      </div>
+      <span class="r-text">- restart test
+      </span>
+
+
+    </div>
+
 
   </main>
   <script src="./script/main.js"> </script>
