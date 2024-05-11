@@ -11,6 +11,8 @@ addClass(document.querySelector(".default"), "on")
 document.querySelector(".capital").onclick = () => {
     removeClass(document.querySelector(".default"), "on")
     const el = document.querySelector(".capital");
+    document.getElementById("game").focus()
+
     if (!el.classList.contains("on")) {
         addClass(el, "on")
     } else {
@@ -23,7 +25,7 @@ document.querySelector(".capital").onclick = () => {
 //punctutation
 document.querySelector(".punctuation").onclick = () => {
     removeClass(document.querySelector(".default"), "on")
-
+    document.getElementById("game").focus()
     const el = document.querySelector(".punctuation");
     if (!el.classList.contains("on")) {
         addClass(el, "on");
@@ -38,7 +40,7 @@ document.querySelector(".punctuation").onclick = () => {
 document.getElementById("one").onclick = () => {
     removeClass(document.getElementById("two"), "on")
     removeClass(document.getElementById("three"), "on")
-
+    document.getElementById("game").focus()
     const el = document.getElementById("one")
     if (!el.classList.contains("on")) {
         addClass(el, "on")
@@ -55,6 +57,7 @@ elements.forEach(element => {
     element.onclick = () => {
         removeClass(document.getElementById("one"), "on")
         removeClass(document.getElementById("three"), "on")
+        document.getElementById("game").focus()
 
         if (!element.classList.contains("on")) {
             addClass(element, "on")
@@ -73,6 +76,7 @@ document.getElementById("three").onclick = () => {
     removeClass(document.getElementById("one"), "on")
     removeClass(document.getElementById("two"), "on")
     addClass(document.querySelector(".sentences"), "on")
+    document.getElementById("game").focus()
 
     const el = document.getElementById("three")
     if (!el.classList.contains("on")) {
@@ -92,6 +96,7 @@ document.querySelector(".default").onclick = () => {
     removeClass(document.getElementById("three"), "on");
     addClass(document.getElementById("two"), "on")
     addClass(document.querySelector(".sentences"), "on")
+    document.getElementById("game").focus()
 
 
     const el = document.querySelector(".default");
@@ -149,7 +154,7 @@ async function fetchParagraph() {
 
 function formatWord() {
     document.getElementById("textt").style.marginTop = "0px"
-    document.getElementById("cursor").style.top = "10px"
+    document.getElementById("cursor").style.top = "12px"
     document.getElementById("cursor").style.left = "-3px"
 
     timer = 0;
@@ -295,8 +300,7 @@ document.getElementById("game").addEventListener('keyup', (ev) => {
     }
 
     //move lines
-    if (currentDiv.getBoundingClientRect().top > 200) {
-
+    if (currentDiv.getBoundingClientRect().top > 240) {
         const text = document.getElementById('textt');
         const margin = parseInt(text.style.marginTop || "0px");
         const game = document.getElementById("game");
@@ -355,8 +359,10 @@ function WPM() {
     TotalLetter = 0;
     CorrectLetter = 0;
     WrongLetter = 0;
+    const  mins=(Math.floor(timer/60)).toString().padStart(2,'0');
+    const  secs=(timer%60).toString().padStart(2,'0');
     document.querySelector(".wpm").innerHTML = AWPM.toFixed(2) + " WPM";
-    document.querySelector(".sec").innerHTML = timer
+    document.querySelector(".sec").innerHTML = mins+":"+secs;
     document.querySelector(".accuracy").innerHTML = accuracy.toFixed(2) + "%";
     timer = 0;
 }
