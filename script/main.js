@@ -7,6 +7,11 @@ addClass(document.getElementById("two"), "on")
 addClass(document.querySelector(".sentences"), "on")
 addClass(document.querySelector(".default"), "on")
 
+//login button
+document.querySelector(".login").addEventListener('click',()=>{
+    window.location.pathname+="/login.html"
+})
+
 //capital
 document.querySelector(".capital").onclick = () => {
     removeClass(document.querySelector(".default"), "on")
