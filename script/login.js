@@ -1,4 +1,5 @@
 
+
 document.getElementById("button1").addEventListener('click',()=>{
     document.querySelector(".right").classList.remove("alternate")
     document.querySelector(".container").classList.remove("alternate")
@@ -18,6 +19,7 @@ document.getElementById("button1").addEventListener('click',()=>{
     },700)
 
 })
+
 
 document.getElementById("button2").addEventListener('click',()=>{
     document.querySelector(".right").classList.add("alternate")
@@ -51,16 +53,35 @@ document.getElementById("login").addEventListener('click',(event)=>{
     event.preventDefault();
     const email=document.getElementById("Login-email").value;
     const pass=document.getElementById("Login-pass").value;
-    console.log(email)
-    console.log(pass)
+
+    axios.post(`${network}/user/login`,{
+        email,
+        password:pass
+    }).then(res=>{
+        alert(res.data.message)
+        localStorage.setItem("token",`Bearer ${res.data.token}`)
+        window.location.pathname="/"
+    }).catch(err=>{
+        alert(err.response.data.message)
+    })
 })
 
+//signup
 document.getElementById("sign").addEventListener('click',(event)=>{
     event.preventDefault();
     const email=document.getElementById("Sign-email").value;
     const pass=document.getElementById("Sign-pass").value;
     const username=document.getElementById("Sign-user").value;
-    console.log(username)
-    console.log(email)
-    console.log(pass)
+
+    axios.post(`${network}/user/signup`,{
+        name:username,
+        email,
+        password:pass
+    }).then(res=>{
+        alert(res.data.message);
+        localStorage.setItem("token",`Bearer ${res.data.token}`)
+        window.location.pathname="/"
+    }).catch(err=>{
+       alert(err.response.data.message)
+    })
 })

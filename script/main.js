@@ -1,3 +1,5 @@
+
+
 let wordSettings = {
     capital: false,
     punctuations: false,
@@ -7,9 +9,26 @@ addClass(document.getElementById("two"), "on")
 addClass(document.querySelector(".sentences"), "on")
 addClass(document.querySelector(".default"), "on")
 
+//check user is login or not
+document.addEventListener("DOMContentLoaded",()=>{
+    const token =localStorage.getItem("token")
+    if(token){
+        axios.get(`${network}/user/user`,{
+            headers:{
+                "Authorization": token
+            }
+        }).then(res=>{
+            console.log(res.data.message)
+            document.querySelector(".login").classList.add("done")
+        }).catch(err=>{
+            
+        })
+    }
+})
+
 //login button
 document.querySelector(".login").addEventListener('click',()=>{
-    window.location.pathname+="/login.html"
+    window.location.pathname="/login.html"
 })
 
 //capital
@@ -360,6 +379,8 @@ function WPM() {
     let accuracy = (CorrectLetter / TotalLetter) * 100;
 
     let AWPM = WPM * (accuracy / 100);
+
+    window.SaveData(parseInt(AWPM.toFixed(2)),parseInt(accuracy.toFixed(2)))
 
     TotalLetter = 0;
     CorrectLetter = 0;
