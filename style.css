@@ -7,7 +7,7 @@
     --PrimaryColor: #fd4;
     --settingsColor: #2c2e31;
     --roundness: 0.5rem;
-    
+
   --uno-1: #d6e9ff;
   --uno-5: #444c55;
  
@@ -443,6 +443,45 @@ spann {
     font-size: 1.5rem;
     margin-left: 2rem;
   }
-  
+  .profile{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-right: 200px;
+    margin-top: 20px;
+  }
+.box{
+  border: 1px solid var(--uno-5);
+  font-size: 1.3rem;
+  padding: 20px;
+  display: flex;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  row-gap: 0.5rem;
+  width: 200px;
+
+}
+.box p{
+  font-size: smaller;
+  color: var(--PrimaryColor)
+}
+.boxP{
+  display: flex;
+  gap: 50px;
+  top: 0;
 
   
+}
+#username{
+  font-size: x-large;
+  font-family: "Poetsen One", sans-serif;
+  font-weight: 400;
+
+}
+.textt{
+  font-family: "Poetsen One", sans-serif;
+  color: var(--uno-1);
+}
