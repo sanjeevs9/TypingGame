@@ -1,4 +1,8 @@
 const  {z} =require("zod")
+require("dotenv").config();
+const key=process.env.SECRET_KEY;
+const jwt=require("jsonwebtoken")
+
 
 const UserSignup=z.object({
     name:z
@@ -22,6 +26,29 @@ const UserLogin=z.object({
     .min(6,{message:"6 digits of pass is required"})
 })
 
+const middleware=async(req,res,next)=>{
+    let token=req.headers.authorization
+
+    console.log(token+"token")
+    
+    if(!token || !token.startsWith("Bearer")){
+        return res.status(400).json({
+            message:"Please Login"
+        })
+    }
+    token=token.split(" ")[1];
+    const decoded=await jwt.verify(token,key);
+    if(decoded){
+        req.userId=decoded.userId;
+        next();
+    }else{
+        res.status(400).json({
+            message:"plese login"
+        })
+    }
+}
+
+
 module.exports={
-    UserSignup,UserLogin
+    UserSignup,UserLogin,middleware
 }

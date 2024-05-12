@@ -24,7 +24,11 @@ const scoreSchema=new mongoose.Schema({
         type:mongoose.Schema.Types.ObjectId,
         ref:'User'
     },
-    score:{
+    wpm:{
+        type:Number,
+        required:true
+    },
+    accuracy:{
         type:Number,
         required:true
     }

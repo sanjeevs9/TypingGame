@@ -1,6 +1,7 @@
 const express=require("express")
 const cors=require("cors");
-const { router } = require("./routes/user");
+const user = require("./routes/user");
+const data =require("./routes/Data")
 const app=express()
 app.use(cors());
 const port=3000;
@@ -12,8 +13,9 @@ app.get("",(req,res)=>{
     })
     console.log("hello")
 })
-app.use("/user",router)
+app.use("/user",user)
+app.use("/score",data)
 
 app.listen(port,()=>{
-    console.log("port running on "+{port});
+    console.log("port running on "+port);
 })
