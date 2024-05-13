@@ -151,6 +151,7 @@ font-family: "Poetsen One", sans-serif;
     position: absolute;
     height: 100%;
     width: 100%;
+    
    
  }
 .extra{
@@ -221,14 +222,16 @@ font-family: "Poetsen One", sans-serif;
     align-items: center;
     gap: 20px;
     z-index: 21;
-    top: -100%;
     flex-direction: column;
     left: 100%;
+    top: -850px
 }
+
 @media(max-width:1850px){
     .right{
-        top: -108%;
+        top:-810px;
     }
+   
     .img{
         height: 650px;
         width: 650px;
@@ -244,7 +247,7 @@ font-family: "Poetsen One", sans-serif;
 }
 @media (max-width:1600px) {
     .right{
-        top: -112%;
+        top:-790px;
     }
     .img{
         height: 600px;
