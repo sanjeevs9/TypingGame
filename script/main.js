@@ -5,7 +5,7 @@ let wordSettings = {
     punctuations: false,
     sentences: 1
 }
-addClass(document.getElementById("two"), "on")
+addClass(document.getElementById("one"), "on")
 addClass(document.querySelector(".sentences"), "on")
 addClass(document.querySelector(".default"), "on")
 
