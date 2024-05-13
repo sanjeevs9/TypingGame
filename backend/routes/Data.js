@@ -1,7 +1,7 @@
 
 const express=require("express");
 const { middleware } = require("../middleware");
-const { Score } = require("../db");
+const { Score, User } = require("../db");
 const router =express.Router()
 require("dotenv").config();
 const key=process.env.SECRET_KEY;
@@ -45,11 +45,14 @@ router.get("/score",middleware,async(req,res)=>{
         })
         return
     }
+    const U=await User.findOne({_id:userId})
+    
 
     res.json({
         message:"user found",
         wpm:user.wpm,
-        accuracy:user.accuracy
+        accuracy:user.accuracy,
+        name:U.name
     })
 }) 
 
