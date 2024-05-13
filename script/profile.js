@@ -11,6 +11,7 @@ document.addEventListener("DOMContentLoaded",()=>{
             }
         }).then(res=>{
             console.log(res)
+            document.getElementById("name").innerHTML=res.data.name
             document.getElementById("wpm").innerHTML=res.data.wpm+"WPM"
             document.getElementById("accuracy").innerHTML=res.data.accuracy+"%"
         }).catch(err=>{

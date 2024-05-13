@@ -57,6 +57,11 @@ button{
 .login.done{
   display: none;
 }
+@media (max-width:1536px){
+  .login{
+    display: none;
+  }
+}
 
 #logo-col{
     display: flex;
@@ -395,6 +400,9 @@ spann {
     border: 1px solid var(--uno-5);
     margin-right: 100px;
   }
+  #TP{
+    font-size: 1.6rem;
+  }
   .logo-col{
     width: 100%;
     height: 8rem;
@@ -443,6 +451,30 @@ spann {
     font-size: 1.5rem;
     margin-left: 2rem;
   }
+  @media (max-width:1536px){
+    .sidebar{
+      display: none;
+    }
+  }
+  @media(max-width:1800px){
+    .sidebar{
+      margin-right: 50px;
+      width: 13vw;
+    }
+    .logo-col p{
+      font-size: 1.4rem;
+      font-weight: 600;
+    }
+    .logo-col img{
+      width: 80px;
+      height: 80px;
+    }
+    #TP{
+      font-size: 1.2rem;
+    }
+
+  }
+
   .profile{
     display: flex;
     flex-direction: column;
@@ -484,4 +516,48 @@ spann {
 .textt{
   font-family: "Poetsen One", sans-serif;
   color: var(--uno-1);
+}
+
+
+.containerH{
+  display: flex;
+}
+@media (max-width:1536px) {
+  .containerH{
+   display: none;
+  }
+  .container-small{
+   display: flex;
+  }
+}
+@media (min-width:1536px) {
+  .container-small{
+    display: none;
+  }
+}
+.container-small{
+   position: fixed;
+   min-height: 2000px;
+   min-width: 2000px;
+   background: var(--bgColor);
+   align-items: center;
+   justify-content: center;
+   transform: translateY(400px);
+   
+}
+.warning{
+   display: flex;
+   width: 400px;
+   height: 400px;
+   font-family: "Poetsen One", sans-serif;
+   font-size: 60px;
+   transform: rotate(270deg);
+   justify-content: right;
+}
+.message{
+   display: flex;
+   width: 400px;
+   height: 400px;
+   font-size: 30px;
+   font-family: "Poetsen One", sans-serif;
 }

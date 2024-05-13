@@ -56,4 +56,12 @@ router.get("/score",middleware,async(req,res)=>{
     })
 }) 
 
+//get scores of all user
+router.get("/high",async(req,res)=>{
+    const value=await Score.find().sort({wpm:-1}).populate({path:'id', select:'name'})
+    return res.json({
+        value
+    })
+})
+
 module.exports=router

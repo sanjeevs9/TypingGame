@@ -262,13 +262,21 @@ document.getElementById("game").addEventListener('keyup', (ev) => {
                 addClass(element, "incorrect")
             });
         }
+       
 
         removeClass(currentDiv, "current");
-        addClass(currentDiv.nextSibling, "current");
+        {currentDiv.nextSibling? addClass(currentDiv.nextSibling, "current"):""}
+        if(currentDiv.nextSibling===null){
+            WPM();
+            document.getElementById("game").blur()
+            return
+        }
+       
         if (currentSpan) {
             removeClass(currentSpan, "current");
         }
-        addClass(currentDiv.nextSibling.firstChild, "current");
+        {currentDiv.nextSibling?addClass(currentDiv.nextSibling.firstChild, "current"):""}
+        
     }
 
     if (key === "Backspace") {
@@ -313,14 +321,10 @@ document.getElementById("game").addEventListener('keyup', (ev) => {
         }
 
     }
+    //end
     if (!currentDiv.nextSibling && !currentSpan.nextSibling) {
-        TimerStart = false;
-        clearInterval(myInterval);
-        TotalLetter = CorrectLetter + WrongLetter;
-
         WPM()
         document.getElementById("game").blur()
-
     }
 
     //move lines
@@ -373,6 +377,16 @@ document.getElementById("game").addEventListener('keyup', (ev) => {
 })
 
 function WPM() {
+    
+    TotalLetter = CorrectLetter + WrongLetter
+    TimerStart = false;
+    clearInterval(myInterval);
+
+    console.log("hello from here")
+    console.log(timer+"time")
+
+    console.log(TotalLetter)
+
     let timeinmin = timer / 60;
     let WPM = (TotalLetter / 5) / timeinmin;
 
