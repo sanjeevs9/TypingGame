@@ -3,7 +3,7 @@
 let wordSettings = {
     capital: false,
     punctuations: false,
-    sentences: 2
+    sentences: 1
 }
 addClass(document.getElementById("two"), "on")
 addClass(document.querySelector(".sentences"), "on")
@@ -132,7 +132,7 @@ document.querySelector(".default").onclick = () => {
     wordSettings = {
         capital: false,
         punctuations: false,
-        sentences: 2
+        sentences: 1
     }
     fetchParagraph();
 }
@@ -205,8 +205,7 @@ window.addEventListener('keyup', (ev) => {
     const key = ev.key;
     console.log(key)
     if (key === "Escape" || key=== "Tab") {
-        console.log("sdfbasd")
-        wordSettings.sentences = 2;
+        wordSettings.sentences = 1;
         fetchParagraph()
         document.getElementById("game").focus();
     }
