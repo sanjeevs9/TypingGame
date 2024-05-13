@@ -58,10 +58,12 @@ document.getElementById("login").addEventListener('click',(event)=>{
         email,
         password:pass
     }).then(res=>{
+        console.log(res)
         alert(res.data.message)
         localStorage.setItem("token",`Bearer ${res.data.token}`)
         window.location.pathname="/"
     }).catch(err=>{
+        console.log(err)
         alert(err.response.data.message)
     })
 })
@@ -78,10 +80,12 @@ document.getElementById("sign").addEventListener('click',(event)=>{
         email,
         password:pass
     }).then(res=>{
+        console.log(res)
         alert(res.data.message);
         localStorage.setItem("token",`Bearer ${res.data.token}`)
         window.location.pathname="/"
     }).catch(err=>{
+        console.log(err)
        alert(err.response.data.message)
     })
 })

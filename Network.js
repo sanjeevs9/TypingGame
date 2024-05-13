@@ -1,2 +1,2 @@
-const network = "https://backend-typing-n235m1euy-sanjeevs9s-projects.vercel.app";
+const network = "https://backend-typing.vercel.app";
 window.network = network;
