@@ -18,6 +18,8 @@ body{
      font-family: "Roboto Mono", monospace;
      background-color: var(--bgColor);
      color: var(--textPrimary);
+     max-height: 100vh;
+     overflow: hidden;
 
 }
 main {
@@ -57,7 +59,7 @@ button{
 .login.done{
   display: none;
 }
-@media (max-width:1536px){
+@media (max-width:1530px){
   .login{
     display: none;
   }
@@ -234,6 +236,31 @@ div.word{
     border-radius: 10px;
     padding: 10px;
     margin-top: 220px;
+  }
+  @media (max-width:1930px) {
+    .keyboard{
+      margin-top: 180px;
+    }
+    .WPM{
+      margin-bottom: 10px;
+      
+    }
+  }
+  @media (max-width:1750px) {
+    .keyboard{
+      margin-top: 100px;
+    }
+    .WPM{
+      margin-bottom:90px ;
+    }
+  }
+  @media (max-width:1600px) {
+    .keyboard{
+      margin-top: 20px;
+    }
+    .WPM{
+      margin-bottom: 160px ;
+    }
   }
   .keys-row {
     margin-top: 2px;
@@ -451,15 +478,16 @@ spann {
     font-size: 1.5rem;
     margin-left: 2rem;
   }
-  @media (max-width:1536px){
+  @media (max-width:1530px){
     .sidebar{
       display: none;
     }
   }
   @media(max-width:1800px){
     .sidebar{
-      margin-right: 50px;
+      margin-right: 30px;
       width: 13vw;
+      margin-top: 20px;
     }
     .logo-col p{
       font-size: 1.4rem;
@@ -522,7 +550,7 @@ spann {
 .containerH{
   display: flex;
 }
-@media (max-width:1536px) {
+@media (max-width:1530px) {
   .containerH{
    display: none;
   }
@@ -530,7 +558,7 @@ spann {
    display: flex;
   }
 }
-@media (min-width:1536px) {
+@media (min-width:1530px) {
   .container-small{
     display: none;
   }

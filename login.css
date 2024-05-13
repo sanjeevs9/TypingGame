@@ -2,7 +2,7 @@
 body{
 margin: 0;
 }
-@media (max-width:1536px) {
+@media (max-width:1530px) {
    .container{
     display: none;
    }
@@ -171,6 +171,7 @@ font-family: "Poetsen One", sans-serif;
 
 }
 
+
 @keyframes start{
     0%{
         transform: translate(-120%);
@@ -220,9 +221,35 @@ font-family: "Poetsen One", sans-serif;
     align-items: center;
     gap: 20px;
     z-index: 21;
-    top: -105%;
+    top: -100%;
     flex-direction: column;
     left: 100%;
+}
+@media(max-width:1850px){
+    .right{
+        top: -108%;
+    }
+    .img{
+        height: 650px;
+        width: 650px;
+    }
+    
+    
+}
+#l-text{
+    margin-left: 20px;
+}
+#r-text{
+    margin-right: 20px;
+}
+@media (max-width:1600px) {
+    .right{
+        top: -112%;
+    }
+    .img{
+        height: 600px;
+        width: 600px;
+    }
 }
 .right.clicked{
     display: flex;
