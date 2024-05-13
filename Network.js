@@ -1,2 +1,2 @@
-const network = "http://localhost:4000";
+const network = "https://backend-typing.vercel.app";
 window.network = network;
