@@ -1,4 +1,5 @@
 
+import { inject } from "@vercel/analytics"
 
 let wordSettings = {
     capital: false,
