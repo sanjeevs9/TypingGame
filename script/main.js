@@ -1,4 +1,4 @@
-
+document.getElementById("githubLink").addEventListener("click",()=>{window.open("https://github.com/sanjeevs9/TypingGame")})
 
 let wordSettings = {
     capital: false,
