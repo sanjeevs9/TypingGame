@@ -1,7 +1,9 @@
 
 
 document.addEventListener("DOMContentLoaded",()=>{
-    axios.get(`${network}/score/high`).then(res=>{
+    axios.get(`${network}/score/high`,{
+        'Content-Type': 'application/json',
+    }).then(res=>{
         console.log(res.data.value)
         let count=1;
         let placeholder=document.getElementById("output");
