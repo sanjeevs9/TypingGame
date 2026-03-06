@@ -19,16 +19,12 @@ document.addEventListener("DOMContentLoaded",()=>{
             }
         }).then(res=>{
             console.log(res.data.message)
-            document.querySelector(".login").classList.add("done")
+            const loginLink = document.querySelector(".login-link")
+            if(loginLink) loginLink.style.display = "none"
         }).catch(err=>{
-            
+
         })
     }
-})
-
-//login button
-document.querySelector(".login").addEventListener('click',()=>{
-    window.location.pathname="/login.html"
 })
 
 //capital
