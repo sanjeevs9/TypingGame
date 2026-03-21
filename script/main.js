@@ -177,6 +177,8 @@ function formatWord() {
     document.getElementById("cursor").style.top = "12px"
     document.getElementById("cursor").style.left = "-3px"
 
+    document.querySelector(".game").style.height = "150px";
+
     timer = 0;
     TimerStart = false;
     clearInterval(myInterval);
@@ -185,6 +187,7 @@ function formatWord() {
     CorrectLetter = 0;
     WrongLetter = 0;
     TotalLetter = 0;
+    document.querySelector(".WPM").style.display = "none";
 
     for (let i = 0; i < words.length; i++) {
         game.innerHTML += `<div class="word"><span class="letter">${words[i].split("").join('</span><span class="letter">')}</span></div>`
@@ -322,19 +325,15 @@ document.getElementById("game").addEventListener('keyup', (ev) => {
         document.getElementById("game").blur()
     }
 
-    //move lines
-    if (currentDiv.getBoundingClientRect().top > 240) {
-        const text = document.getElementById('textt');
+    //move lines — keep scrolling up so the current word stays visible (on line 1 or 2)
+    const gameBox = document.getElementById("game");
+    const lineHeight = parseFloat(getComputedStyle(gameBox).lineHeight) || parseFloat(getComputedStyle(gameBox).fontSize) * 2;
+    const text = document.getElementById('textt');
+    let wordTop = currentDiv.getBoundingClientRect().top - gameBox.getBoundingClientRect().top;
+    while (wordTop >= lineHeight * 2) {
         const margin = parseInt(text.style.marginTop || "0px");
-        const game = document.getElementById("game");
-        console.log(game.clientHeight)
-
-        if (game.scrollHeight < game.clientHeight) {
-
-        } else {
-            text.style.marginTop = (margin - 40) + "px";
-        }
-
+        text.style.marginTop = (margin - lineHeight) + "px";
+        wordTop = currentDiv.getBoundingClientRect().top - gameBox.getBoundingClientRect().top;
     }
     console.log(document.querySelector(".keyboard").clientWidth)
     //move cursor
@@ -372,32 +371,38 @@ document.getElementById("game").addEventListener('keyup', (ev) => {
 })
 
 function WPM() {
-    
     TotalLetter = CorrectLetter + WrongLetter
     TimerStart = false;
     clearInterval(myInterval);
 
-    console.log("hello from here")
-    console.log(timer+"time")
+    const mins = (Math.floor(timer / 60)).toString().padStart(2, '0');
+    const secs = (timer % 60).toString().padStart(2, '0');
 
-    console.log(TotalLetter)
+    if (TotalLetter === 0 || timer === 0) {
+        document.querySelector(".WPM").style.display = "flex";
+        document.querySelector(".wpm").innerHTML = "0 WPM";
+        document.querySelector(".sec").innerHTML = mins + ":" + secs;
+        document.querySelector(".accuracy").innerHTML = "0%";
+        timer = 0;
+        TotalLetter = 0;
+        CorrectLetter = 0;
+        WrongLetter = 0;
+        return;
+    }
 
     let timeinmin = timer / 60;
-    let WPM = (TotalLetter / 5) / timeinmin;
-
+    let wpmVal = (TotalLetter / 5) / timeinmin;
     let accuracy = (CorrectLetter / TotalLetter) * 100;
+    let AWPM = wpmVal * (accuracy / 100);
 
-    let AWPM = WPM * (accuracy / 100);
-
-    window.SaveData(parseInt(AWPM.toFixed(2)),parseInt(accuracy.toFixed(2)))
+    window.SaveData(parseInt(AWPM.toFixed(2)), parseInt(accuracy.toFixed(2)))
 
     TotalLetter = 0;
     CorrectLetter = 0;
     WrongLetter = 0;
-    const  mins=(Math.floor(timer/60)).toString().padStart(2,'0');
-    const  secs=(timer%60).toString().padStart(2,'0');
+    document.querySelector(".WPM").style.display = "flex";
     document.querySelector(".wpm").innerHTML = AWPM.toFixed(2) + " WPM";
-    document.querySelector(".sec").innerHTML = mins+":"+secs;
+    document.querySelector(".sec").innerHTML = mins + ":" + secs;
     document.querySelector(".accuracy").innerHTML = accuracy.toFixed(2) + "%";
     timer = 0;
 }

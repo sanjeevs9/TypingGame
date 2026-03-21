@@ -88,7 +88,6 @@ main {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   max-width: 100%;
   margin: 24px auto;
   position: relative;
@@ -312,10 +311,10 @@ div.word {
 }
 
 .game {
-  height: 140px;
+  height: 105px;
   max-width: 1000px;
   width: 75%;
-  margin-top: 40px;
+  margin-top: 80px;
   word-wrap: break-word;
   line-height: 2.0;
   overflow-y: hidden;
@@ -351,12 +350,7 @@ div.word {
 }
 
 #textt {
-  filter: blur(5px);
-  transition: filter var(--transition-slow);
-}
-
-.game:focus #textt {
-  filter: blur(0px);
+  filter: none;
 }
 
 .game:focus #focus-error {
@@ -419,11 +413,11 @@ div.word {
 
 /* --- Keyboard (Glass Panel) --- */
 .keyboard {
-  margin: 0px auto;
+  margin: 60px auto 0;
   border: 1px solid var(--glassBorder);
   border-radius: 14px;
   padding: 12px;
-  margin-top: 16px;
+  margin-top: 80px;
   background: rgba(255, 255, 255, 0.025);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
@@ -434,17 +428,17 @@ div.word {
 
 @media (max-width: 1600px) {
   .keyboard {
-    margin-top: 8px;
+    margin-top: 120px;
   }
 }
 
 @media (max-height: 900px) {
   .keyboard {
-    margin-top: 5px;
+    margin-top: 80px;
   }
   .game {
-    margin-top: 12px;
-    height: 160px;
+    margin-top: 60px;
+    height: 105px;
   }
   main {
     margin: 8px auto;
@@ -460,7 +454,7 @@ div.word {
 
 @media (max-height: 800px) {
   .keyboard {
-    margin-top: 0px;
+    margin-top: 60px;
   }
   .key {
     height: 36px;
@@ -478,8 +472,8 @@ div.word {
   .key__symbols { line-height: 20px; }
   .keys-row { margin-top: 2px; }
   .game {
-    margin-top: 8px;
-    height: 170px;
+    margin-top: 40px;
+    height: 105px;
   }
   main {
     margin: 4px auto;
@@ -617,7 +611,7 @@ spann {
   justify-content: center;
   gap: 24px;
   color: var(--PrimaryColor);
-  margin-top: 12px;
+  margin-top: 24px;
   font-weight: bolder;
   font-family: var(--font-display);
 }
@@ -652,7 +646,13 @@ spann {
 
 @media (max-width: 1000px) {
   .WPM {
-    display: none;
+    gap: 12px;
+  }
+  .accuracy,
+  .sec,
+  .wpm {
+    font-size: 1.2rem;
+    padding: 8px 16px;
   }
 }
 
@@ -707,7 +707,7 @@ spann {
 
 @media (max-width: 1000px) {
   .restart {
-    display: none;
+    width: 240px;
   }
 }
 
@@ -1230,11 +1230,159 @@ spann {
   }
 }
 
-@media (max-width: 1000px) {
+/* --- Mobile Responsive --- */
+@media (max-width: 768px) {
+  body {
+    overflow-y: auto;
+    overflow-x: hidden;
+    max-height: none;
+  }
+  main {
+    margin: 12px auto;
+  }
+  .heading {
+    width: 95% !important;
+    max-width: 95% !important;
+  }
+  #heading-text {
+    font-size: large;
+  }
+  .heading img {
+    width: 24px;
+  }
+  .settings {
+    width: 95% !important;
+    padding: 8px 10px;
+    margin-top: 6px;
+    overflow-x: auto;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .settings::-webkit-scrollbar {
+    display: none;
+  }
+  .first-settings,
+  .second-settings {
+    flex-shrink: 0;
+  }
+  .game {
+    width: 95% !important;
+    margin-top: 16px;
+    height: 120px;
+  }
+  .text {
+    font-size: 18px;
+  }
+  div.word {
+    margin: 0 5px;
+  }
   .WPM {
-    display: none !important;
+    gap: 8px;
+    margin-top: 8px;
+  }
+  .accuracy,
+  .sec,
+  .wpm {
+    font-size: 1rem;
+    padding: 6px 12px;
+    border-radius: 8px;
   }
   .restart {
-    display: none !important;
+    width: 220px;
+    margin-top: 6px;
+  }
+  #esc, #tab {
+    padding: 8px 12px;
+    font-size: 0.7rem;
+  }
+  .r-text {
+    font-size: 0.75rem;
+    margin-top: 8px;
+  }
+  #github {
+    padding-top: 6px;
+    font-size: 0.7rem;
+  }
+  #github svg {
+    width: 20px;
+    height: 20px;
+  }
+  .nav-link {
+    font-size: 0.75rem;
+    padding: 4px 8px;
+  }
+  .nav-dropdown__trigger {
+    font-size: 0.75rem;
+    padding: 4px 8px;
+  }
+  /* Profile page mobile */
+  .profile {
+    padding: 20px 12px !important;
+  }
+  .box {
+    width: 160px;
+    font-size: 1rem;
+  }
+  .boxP {
+    gap: 20px;
+  }
+  #username h1 {
+    font-size: 1.4rem;
+  }
+  /* HighScore page mobile */
+  .hs-content {
+    padding: 12px 8px !important;
+  }
+  .hs-content #overflow {
+    overflow-x: auto;
+  }
+  .hs-content #h1 {
+    font-size: 24px;
+  }
+  .hs-content #table {
+    font-size: 0.75rem;
+  }
+  .hs-content #table td,
+  .hs-content #table th {
+    padding: 10px 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  main {
+    margin: 6px auto;
+  }
+  .settings {
+    padding: 5px 8px;
+    border-radius: 10px;
+  }
+  .first-settings,
+  .second-settings {
+    font-size: x-small;
+  }
+  .game {
+    margin-top: 10px;
+    height: 100px;
+  }
+  .text {
+    font-size: 16px;
+    letter-spacing: 0.04rem;
+    word-spacing: 0.15rem;
+  }
+  .accuracy,
+  .sec,
+  .wpm {
+    font-size: 0.8rem;
+    padding: 4px 8px;
+  }
+  .hs-content #h1 {
+    font-size: 20px;
+  }
+  .hs-content #table {
+    font-size: 0.65rem;
+  }
+  .hs-content #table td,
+  .hs-content #table th {
+    padding: 8px 5px;
   }
 }

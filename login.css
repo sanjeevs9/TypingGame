@@ -412,3 +412,89 @@ body {
   color: #e8a838;
   border-radius: 8px;
 }
+
+/* Mobile toggle links (hidden on desktop) */
+.mobile-toggle {
+  display: none;
+  font-family: "Sora", sans-serif;
+  color: #5c5c6b;
+  font-size: 0.85rem;
+  cursor: pointer;
+  text-align: center;
+  margin-top: 12px;
+}
+.mobile-toggle span {
+  color: #e8a838;
+  font-weight: 600;
+}
+
+/* --- Login Mobile Responsive --- */
+@media (max-width: 768px) {
+  .container-small {
+    display: none !important;
+  }
+  .container {
+    display: block !important;
+  }
+  .container:before,
+  .container.clicked:before,
+  .container.alternate:before {
+    display: none !important;
+  }
+  .panel {
+    display: none;
+  }
+  .form-container {
+    position: static;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+  }
+  .signIn-SignUp {
+    position: static;
+    right: auto;
+    top: auto;
+  }
+  .SignUp.clicked {
+    animation: none;
+    transform: none;
+  }
+  .left.clicked {
+    animation: none;
+  }
+  .right.clicked,
+  .right.alternate {
+    animation: none;
+  }
+  .email, .password, .username {
+    width: 240px;
+  }
+  .back-button {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 0;
+  }
+  .mobile-toggle {
+    display: block;
+  }
+}
+
+@media (max-width: 480px) {
+  .email, .password, .username {
+    width: 200px;
+  }
+  .emailField, .passwordField, .usernameField {
+    padding: 14px 16px;
+  }
+  .title {
+    font-size: x-large;
+  }
+  .button {
+    width: 140px;
+    font-size: medium;
+    padding: 12px;
+  }
+}
